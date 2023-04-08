@@ -1,4 +1,56 @@
-{% extends 'main.html' %} 
-{% block content %}
-    <h1>Home</h1>
-{% endblock %}
+{% extends 'main.html' %} {% block content %}
+<a href="{% url 'logout' %}">Logout</a>
+
+{% if request.user.teacher %}
+<!-- Render the teacher homepage content here -->
+<h1>Welcome, teacher {{ request.user.username }}!!</h1>
+{% for course in courses %}
+<tr>
+  <a href="{% url 'editGrade' course.id %}">{{ course.course }}</a>
+  <td>{{ course.instructor.username }}</td>
+  <td>{{ course.schedule }}</td>
+  <td>{{ course.capacity }}</td>
+</tr>
+{% endfor %} {% else %}
+<!-- Render the student homepage content here -->
+<h1>Welcome, student {{ request.user.username }}!!</h1>
+<br />
+<h2>All courses</h2>
+{% for course in all_courses %}
+<tr>
+  <td>{{ course.course }}</td>
+  <td>{{ course.instructor.username }}</td>
+  <td>{{ course.schedule }}</td>
+  <td>{{ course.capacity }}</td>
+  <td>
+    {% if request.user.student and course in request.user.student.courses.all %}
+    <form action="{% url 'remove' course.id %}" method="post">
+      {% csrf_token %}
+      <button type="submit">Unenroll</button>
+    </form>
+    {% else %}
+    <form action="{% url 'add' course.id %}" method="post">
+      {% csrf_token %}
+      <button type="submit">Enroll</button>
+    </form>
+
+    {% endif %}
+  </td>
+</tr>
+<br />
+{% endfor %}
+
+<h2>yes</h2>
+
+<br />
+<br />
+<h2>Registered courses</h2>
+{% for course in enrolled_courses %}
+<tr>
+  <td>{{ course.course }}</td>
+  <td>{{ course.instructor.username }}</td>
+  <td>{{ course.schedule }}</td>
+  <td>{{ course.capacity }}</td>
+</tr>
+<br />
+{% endfor %} {% endif %} {% endblock %}

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .back-button {
+            display: inline-block;
+            width: 0;
+            height: 0;
+            border-top: 8px solid transparent;
+            border-bottom: 8px solid transparent;
+            border-right: 16px solid #000;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>editing</h1>
+    <form method="post">
+        <button class="back-button" onclick="submitForm(event)"></button>
+        {% csrf_token %}
+        {{ formset.management_form }}  {# Add the management form here #}
+        <table>
+            {% for form in formset %}
+                <tr>
+                    <td>{{ form.instance.student.username }}</td>
+                    <td>{{ form.grade.as_widget }}</td>
+                    {{ form.id.as_hidden }}  {# Add the hidden 'id' field #}
+                </tr>
+            {% endfor %}
+        </table>
+       
+    </form>
+    <script>
+        function submitForm(event) {
+            event.preventDefault();
+            document.querySelector("form").submit();
+        }
+    </script>
+</body>
+</html>

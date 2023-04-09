@@ -1,0 +1,261 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  
+  body {
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  
+  
+  .flex-container {
+    background-color: rgb(218, 227, 243);
+    display: flex;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .mid-container {
+    display: grid;
+    grid-template-rows: auto 1fr;
+    justify-items: center;
+    min-width: 80vw;
+    min-height: 60vh;
+    background-color: rgb(68, 114, 196);
+    border: 2px solid rgb(48, 83, 143);
+  
+  }
+  
+  .title-container {
+    position: relative;
+    background-color: white;
+    width: 100%;
+    display: flex;
+    text-align: center;
+  }
+  
+  .title-wrapper {
+  
+    display: inline-block;
+  }
+  
+  .input-container {
+    grid-gap: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 40px;
+  }
+  
+  .line {
+    min-width: 80vw;
+  
+    height: 2px;
+    background-color: rgb(54, 93, 162);
+    border: none;
+    /* margin: 0 auto; */
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  
+  .item {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    /* margin: 5px; */
+  }
+  
+  label {
+    display: block;
+    width: 80px;
+    text-align: right;
+    margin-right: 10px;
+  }
+  
+  input {
+    font-size: 20px;
+    border: 1.9px solid rgb(48, 83, 143);
+    padding: 5px;
+  }
+  
+  .full-width {
+    width: 100%;
+    height: 46px;
+    border-radius: 12px;
+    background-color: rgb(68, 114, 196);
+    color: white;
+  }
+  
+  #but {
+    padding-top: 15px;
+  }
+  
+  .table-container {
+    width: 100%;
+    overflow-x: auto;
+    text-align: center; /* Add this line */
+  }
+  
+  table {
+    margin: 50px;
+    margin-top: 4vh;
+    min-width: 70%;
+    min-height: 80%;
+    border-collapse: collapse;
+    display: inline-table;
+    font-size: 20px;
+  }
+  
+  td {
+    border: 2px solid white;
+    padding: 10px;
+    text-align: start;
+  }
+  
+  th {
+    color: white;
+    border: 2px solid white;
+    padding: 10px;
+    text-align: start;
+    background-color: rgb(143, 170, 220);
+  }
+  
+  tr:nth-child(even) {
+    background-color: rgb(207, 213, 234);
+  }
+  
+  tr:nth-child(odd) {
+    background-color: rgb(233, 235, 245);
+  }
+  
+  button{
+      font-size: 24px;
+  }
+  
+  .arrow-icon{
+    font-size: 2rem;
+  }
+  #button1 {
+    color: white;
+    background-color: rgb(71, 114, 192);
+    width: 100%;
+    min-height: 5vh;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: 2px solid rgb(50, 83, 140); /* Add this line */
+  }
+
+  #button3 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    background-color: rgb(71, 114, 192);
+    width: 100%;
+    min-height: 5vh;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: 2px solid rgb(50, 83, 140); /* Add this line */
+  }
+  
+  #button4 {
+    position: absolute;
+    left: 0;
+    height: 100%;
+    width: 8%;
+    border:none;
+    border-bottom:  2px solid rgb(50, 83, 140); ;
+    background-color: rgb(74, 114, 188);
+  }
+  
+  
+  #button2 {
+    background-color: rgb(181, 199, 229);
+    width: 100%;
+    min-height: 5vh;
+    border-top: none;
+    border-right: none;
+    border-bottom: 2px solid rgb(50, 83, 140); /* Add this line */
+  }
+  
+  .click:active {
+    transform: translateY(1.5px);
+  }
+  
+  button:hover {
+      cursor: pointer;
+    }
+    
+  
+  #second{
+      display: none;
+  }
+  
+  #second td:nth-child(5) {
+      text-align: center;
+    }
+    
+  
+    .line {
+      min-width: 80vw;
+      
+      height: 2px;
+      background-color: rgb(54, 93, 162);
+      border: none;
+      margin: 0 auto;
+      position: absolute; 
+      left: 50%;
+      transform: translateX(-50%); 
+  }
+  
+  
+  .title-container h1{
+      color: white;
+      padding-top: 20px;
+      padding-bottom: 20px;
+  }
+  
+  .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: rgb(48, 83, 143);
+      padding: 10px;
+      color: white;
+      height: 50px;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 100%;
+    
+  }
+  
+  .nav-center {
+  
+    
+      margin-right: 150px;
+  }
+  
+  .nav-right a {
+      color: white;
+      text-decoration: none;
+  }
+  
+  .nav-right a:hover {
+      text-decoration: underline;
+  }
+  .enroll-btn {
+    border: none;
+    background-color: transparent;
+    font-size: 1.5em;
+    color: #007bff;
+    cursor: pointer;
+  }
+  
+  .enroll-btn:hover {
+    color: #0056b3;
+  }

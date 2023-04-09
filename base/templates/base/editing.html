@@ -1,44 +1,47 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <style>
-        .back-button {
-            display: inline-block;
-            width: 0;
-            height: 0;
-            border-top: 8px solid transparent;
-            border-bottom: 8px solid transparent;
-            border-right: 16px solid #000;
-            cursor: pointer;
-        }
-    </style>
-</head>
-<body>
-    <h1>editing</h1>
+  {% extends 'main.html' %} {% block content %} 
+
+
+  <div class="flex-container">
+  <div class="mid-container">
+  <div class="title-container">
+    <div class="item">
+        <button class="click" id="button4" onclick="submitForm(event)"><i class="fas fa-arrow-left arrow-icon" style="color: rgb(181, 199, 229);"></i></i></button>
+      <h2 id="button3" >{{course}}</h2>
+  </div>
+
+</div>
+  <div class="table-container">
     <form method="post">
-        <button class="back-button" onclick="submitForm(event)"></button>
         {% csrf_token %}
-        {{ formset.management_form }}  {# Add the management form here #}
-        <table>
+        {{ formset.management_form }}
+        <table id="first">
+            <col style="width: 50%" />
+            <col style="width: 50%" />
+            <tr>
+                <th>Student Name</th>
+                <th>Grade</th>
+            </tr>
             {% for form in formset %}
                 <tr>
                     <td>{{ form.instance.student.username }}</td>
                     <td>{{ form.grade.as_widget }}</td>
-                    {{ form.id.as_hidden }}  {# Add the hidden 'id' field #}
+                    {{ form.id.as_hidden }}
                 </tr>
             {% endfor %}
         </table>
-       
     </form>
+</div>
+</div>
+</div>
+
+
+
+
+
     <script>
-        function submitForm(event) {
-            event.preventDefault();
-            document.querySelector("form").submit();
-        }
+       function submitForm(event) {
+        event.preventDefault();
+        document.querySelector("form").submit();
+    }
     </script>
-</body>
-</html>
+{% endblock %}

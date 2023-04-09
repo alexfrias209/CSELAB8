@@ -21,12 +21,11 @@ def editGrade(request, course_id):
             formset.save()
             return redirect('home')
         else:
-            # Add this line to print the formset errors to the console
             print(formset.errors)
     else:
         formset = EnrollmentFormSet(queryset=enrollments)
 
-    context = {'enrollments': enrollments, 'formset': formset}
+    context = {'enrollments': enrollments, 'formset': formset, 'course': course}
     return render(request, 'base/editing.html', context)
 
 # Create your views here.

@@ -1,10 +1,38 @@
-{% extends 'main.html' %} 
-{% block content %}
+{% load static %}
+
+
+<link
+  rel="stylesheet"
+  type="text/css"
+  href="{% static 'styles/main.css' %}"
+/>
+
+
 <form action="{% url 'login' %}" method="POST">
-    {% csrf_token %}
-    <h1>Sign in</h1>
-    <input type="text" name="username" placeholder="Enter Username" />
-    <input type="password" name="password" placeholder="Enter password" />
-    <button type="submit">Login</button>
-  </form>
-  {% endblock %}
+  {% csrf_token %}
+  
+  <div class="flex-container">
+      <div class="mid-container">
+          <div class="title-container">
+            <div class="item">
+              <h1>ACME University</h1>
+            </div>
+          </div>
+          <div class="input-container">
+              <div class="item">
+                  <label for="username">Username</label>
+                  <input type="text" name="username" id="username" placeholder="Enter Username" />
+              </div>
+              <div class="item">
+                  <label for="password">Password</label>
+                  <input type="password" name="password" id="password" placeholder="Enter password" />
+              </div>
+              <div class="item" id="but">
+                  <button type="submit" class="full-width">Sign in</button>
+              </div>
+          </div>
+      </div>
+  </div>
+</form>
+
+  <script src="{% static 'javascript/form.js' %}"></script>

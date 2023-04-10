@@ -8,6 +8,11 @@ class Student(models.Model):
 
     def __str__(self):
         return str(self.username)
+    
+    def save(self, *args, **kwargs):
+        if self.pk is None and Teacher.objects.filter(teacher_user=self.student_user).exists():
+            raise ValueError("This user is already a teacher")
+        super().save(*args, **kwargs)
 
 class Teacher(models.Model):
     teacher_user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='teacher')
@@ -16,6 +21,11 @@ class Teacher(models.Model):
 
     def __str__(self):
         return str(self.username)
+
+    def save(self, *args, **kwargs):
+        if self.pk is None and Student.objects.filter(student_user=self.teacher_user).exists():
+            raise ValueError("This user is already a student")
+        super().save(*args, **kwargs)
 
 class Course(models.Model):
     instructor = models.ForeignKey(Teacher, on_delete=models.CASCADE, related_name='courses')

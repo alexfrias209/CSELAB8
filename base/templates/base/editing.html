@@ -24,7 +24,7 @@
             {% for form in formset %}
                 <tr>
                     <td>{{ form.instance.student.username }}</td>
-                    <td>{{ form.grade.as_widget }}</td>
+                    <td>{{ form.grade }}</td>
                     {{ form.id.as_hidden }}
                 </tr>
             {% endfor %}

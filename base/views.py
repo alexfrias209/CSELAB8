@@ -8,13 +8,13 @@ from .models import Course, Enrollment
 from .forms import EnrollmentForm
 from django.forms import modelformset_factory
 
+#collection of forms to be submitted together with the same form class
 EnrollmentFormSet = modelformset_factory(Enrollment, form=EnrollmentForm, extra=0)
 
 @login_required(login_url='login')
 def editGrade(request, course_id):
     course = Course.objects.get(id=course_id)
     enrollments = Enrollment.objects.filter(course=course)
-
     if request.method == 'POST':
         formset = EnrollmentFormSet(request.POST, queryset=enrollments)
         if formset.is_valid():
@@ -24,12 +24,8 @@ def editGrade(request, course_id):
             print(formset.errors)
     else:
         formset = EnrollmentFormSet(queryset=enrollments)
-
     context = {'enrollments': enrollments, 'formset': formset, 'course': course}
     return render(request, 'base/editing.html', context)
-
-# Create your views here.
-
 
 def loginPage(request):
     page = 'login'
@@ -42,9 +38,8 @@ def loginPage(request):
         try:
             user = User.objects.get(username=username)
         except:
-            messages.error(request, 'User does not exist')
+            pass
         user = authenticate(request, username=username, password=password)
-
         if user is not None:
             login(request, user)
             return redirect('home')
@@ -72,8 +67,6 @@ def home(request):
         return render(request,'base/home.html', context)
     else:
         return render(request,'base/home.html',{})
-
-
 
 
 @login_required(login_url='login')

@@ -1,12 +1,6 @@
 {% load static %}
 
-
-<link
-  rel="stylesheet"
-  type="text/css"
-  href="{% static 'styles/main.css' %}"
-/>
-
+<link rel="stylesheet" type="text/css" href="{% static 'styles/main.css' %}" />
 
 <form action="{% url 'login' %}" method="POST">
   {% csrf_token %}
@@ -19,6 +13,11 @@
             </div>
           </div>
           <div class="input-container">
+            {% if messages %}
+  {% for message in messages %}
+    <div class="alert alert-danger">{{ message }}</div>
+  {% endfor %}
+{% endif %}
               <div class="item">
                   <label for="username">Username</label>
                   <input type="text" name="username" id="username" placeholder="Enter Username" />
@@ -34,5 +33,14 @@
       </div>
   </div>
 </form>
+<!-- 
+<script src="{% static 'javascript/form.js' %}"></script> -->
 
-  <script src="{% static 'javascript/form.js' %}"></script>
+{% if message %}
+  <script>
+    alert('{{ message }}');
+  </script>
+{% endif %}
+
+</body>
+</html>

@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 class Student(models.Model):
     student_user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='student')
     username = models.CharField(max_length=200, blank=True, null=True)
-    first_name = models.CharField(max_length=200, blank=True, null=True)  # Add this line
+    first_name = models.CharField(max_length=200, blank=True, null=True) 
 
     def __str__(self):
         return str(self.username)
@@ -12,7 +12,7 @@ class Student(models.Model):
 class Teacher(models.Model):
     teacher_user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='teacher')
     username = models.CharField(max_length=200, blank=True, null=True)
-    last_name = models.CharField(max_length=200, blank=True, null=True)  # Add this line
+    last_name = models.CharField(max_length=200, blank=True, null=True)
 
     def __str__(self):
         return str(self.username)
@@ -30,6 +30,11 @@ class Course(models.Model):
     def student_ratio(self):
         num_students = self.students.count()
         return f"{num_students}/{self.capacity}"
+    
+    def full(self):
+        num_students = self.students.count()
+        if num_students >= self.capacity:
+            return True
 
 class Enrollment(models.Model):
     student = models.ForeignKey(Student, on_delete=models.CASCADE, related_name='enrollments')
@@ -40,4 +45,4 @@ class Enrollment(models.Model):
         unique_together = ('student', 'course')
 
     def __str__(self):
-        return f"{self.student} enrolled in {self.course} with grade {self.grade}"
+        return f"{self.student} enrolled in {self.course} - grade {self.grade}"

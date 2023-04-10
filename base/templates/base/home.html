@@ -2,8 +2,7 @@
 
 
 {% if request.user.teacher %}
-<!-- Render the teacher homepage content here -->
-
+<!-- teacher stuff -->
   <div class="flex-container">
       <div class="mid-container">
           <div class="title-container">
@@ -40,7 +39,7 @@
   </div>
 
  {% else %}
-<!-- Render the student homepage content here -->
+<!-- student stuff -->
 
 <div class="flex-container">
     <div class="mid-container">
@@ -96,16 +95,21 @@
   <td>{{ course.schedule }}</td>
   <td>{{ course.student_ratio  }}</td>
   <td>
+    
     {% if request.user.student and course in request.user.student.courses.all %}
 <form action="{% url 'remove' course.id %}" method="post">
   {% csrf_token %}
   <button type="submit" class="enroll-btn"><i class="fas fa-minus fa-1x" style="color: blue;"></i></button>
 </form>
 {% else %}
+{% if course.full == True %}
+<button type="submit" class="enroll-btn">Full</button>
+{% else %}
 <form action="{% url 'add' course.id %}" method="post">
   {% csrf_token %}
   <button type="submit" class="enroll-btn"><i class="fas fa-plus fa-1x"  style="color: red; "></i></button>
 </form>
+{% endif %}
 {% endif %}
 
   </td>
